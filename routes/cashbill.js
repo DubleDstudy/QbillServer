@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 
 popbill.config({
     LinkID: 'RPSKA',
-    SecretKey: '188Ri5WTdWjOia2XB/9iDgiAxVws6HaAO5tyMioLhkM=',
+    SecretKey: '=',
     IsTest: true,
     IPRestrictOnOff: true,
 
