@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <title>현금영수증 발급 </title>
+</head>
+<body>
+<div id="content">
+    <p class="heading1">현금영수증</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <!-- <legend><%= path %></legend> -->
+        <legend>현금영수증 리스트</legend>
+        <%
+        result.forEach(function(cashbillInfo, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li> 발급번호 : <%= cashbillInfo.mgtKey %></li>
+                    <li> 거래일자 : <%= cashbillInfo.tradeDate %></li>
+                    <li> 거래구분 : <%= cashbillInfo.tradeUsage %></li>
+                    <li> 거래금액 : <%= cashbillInfo.totalAmount %></li>
+                    <li> 식별번호 : <%= cashbillInfo.identityNum %></li>
+                    <li> 주문자명 : <%= cashbillInfo.customerName %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+</html>

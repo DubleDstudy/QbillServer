@@ -1,0 +1,55 @@
+<html>
+  <head>
+      
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        var name ='';
+        var total = 0;
+        var donutChartData = [['Category', 'Amount']];
+
+        function drawChart(data) {
+            var data = google.visualization.arrayToDataTable(donutChartData);
+
+            var options = {
+                title: name + '님의 소비 지출 유형 (지출 총액 : ' + total + '원)',
+                pieHole : 0.4,
+            };
+            
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+
+            chart.draw(data, options);
+        }
+
+        
+
+        $.ajax({
+            url:'http://192.168.43.190:3000/dashboard/getChartData',
+            type : 'GET',
+            headers : {
+            },
+            data : {
+            },
+            success:function(data){
+                console.log("hello")
+                console.log(data);
+
+                name = data.name;
+                total = data.total;
+
+                for (var i = 0; i < data.resList.length; i++) {
+                    donutChartData[i + 1] = [data.resList[i].category, data.resList[i].subTot];
+                }
+
+                console.log(donutChartData);
+            }
+	    })
+    </script>
+  </head>
+  <body>
+    <div id="donutchart" style="width: 400px; height: 500px;"></div>
+  </body>
+</html>
